@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.biometric:biometric-ktx:1.2.0-alpha05@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/fdebff39119c4c8c001920b09646147f/transformed/biometric-ktx-1.2.0-alpha05/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/fdebff39119c4c8c001920b09646147f/transformed/biometric-ktx-1.2.0-alpha05/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/fdebff39119c4c8c001920b09646147f/transformed/biometric-ktx-1.2.0-alpha05/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/776ec0ca5a606012f830fee7a3c60bda/transformed/biometric-ktx-1.2.0-alpha05/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/776ec0ca5a606012f830fee7a3c60bda/transformed/biometric-ktx-1.2.0-alpha05/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/776ec0ca5a606012f830fee7a3c60bda/transformed/biometric-ktx-1.2.0-alpha05/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

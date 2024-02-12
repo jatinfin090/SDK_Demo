@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.chuckerteam.chucker:library-no-op:3.5.2@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/717adfed9d4c38d50d4af2b45ee5f938/transformed/library-no-op-3.5.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/717adfed9d4c38d50d4af2b45ee5f938/transformed/library-no-op-3.5.2/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.chuckerteam.chucker/library-no-op/3.5.2/c07a2b7f8cef92fb00cfd41ec7feb276f3d6a29f/library-no-op-3.5.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.chuckerteam.chucker/library-no-op/3.5.2/6bcbb4a61ea319180fbf3ccea18cb42ce48f8de4/library-no-op-3.5.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

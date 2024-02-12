@@ -1,8 +1,9 @@
 plugins {
-    id 'com.android.application'
+    //id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'com.google.dagger.hilt.android'
+    //   id 'com.google.dagger.hilt.android'
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs'
     id 'org.jetbrains.kotlin.plugin.serialization'
@@ -13,7 +14,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.basedemo"
+        //applicationId "com.example.basedemo"
         minSdk 24
         targetSdk 34
         versionCode 1
@@ -26,15 +27,19 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            consumerProguardFiles 'consumer-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = '17'
     }
+
     dataBinding {
         enabled = true
     }
@@ -42,6 +47,35 @@ android {
     buildFeatures {
         buildConfig = true
     }
+
+}
+
+
+publishing {
+
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.demo_loan_sdk'
+            artifactId = 'loan_sdk'
+            version = "1.0.0"
+            artifacts { "$buildDir/outputs/aar/loan_sdk-release.aar" }
+           /* pom {
+                description = 'First version of the loan sdk'
+            }*/
+        }
+        repositories {
+            maven {
+                url = uri("https://maven.pkg.github.com/jatinfin090/SDK_Demo")
+                name = 'GithubPackages'
+                credentials {
+                    username = System.getenv("jatinfin090")
+                    //  password = "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"
+                    password = System.getenv("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")
+                }
+            }
+        }
+    }
+
 }
 
 
