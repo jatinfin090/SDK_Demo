@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="color_primary">#00A070</color>
+    <color name="color_primary_blur">#09DA9D</color>
+    <color name="color_Secondary">#FF9800</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +10,84 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light_text">#777777</color>
+    <color name="blue2">#32A1D9</color>
+    <color name="blue_blur_1">#EBF4FF</color>
+    <color name="blue_shade">#55C1F7</color>
+    <color name="blue_shade_2">#8BCBF5</color>
+    <color name="blue_shade_5">#32A0DA</color>
+    <!-- <color name="blue_shade_5">#4285F4</color>-->
+    <color name="blue_shade_6">#32A0DA</color>
+    <color name="grey">#A7A9A9</color>
+    <color name="grey__">#C8C9C9</color>
+    <color name="grey_">#E5E5E5</color>
+    <color name="grey_shade_10">#9F9E9F</color>
+    <color name="light_red">#EE4D37</color>
+    <color name="black_shade">#303030</color>
+    <color name="black_2">#0D222D</color>
+    <color name="transparent">#00000000</color>
+    <color name="green1">#C4F4C8</color>
+    <color name="green">#56C36E</color>
+    <color name="red">#F21C0C</color>
+    <color name="grey_shade">#F7F7F7</color>
+    <color name="grey_shade_1">#848484</color>
+    <color name="grey_shade_2">#EAEAEA</color>
+    <color name="grey_shade_3">#F2F2F2</color>
+    <color name="grey_shade_5">#CBCBCB</color>
+    <color name="grey_shade_11">#C5BFB9</color>
+    <color name="grey_shade_6">#ABABAB</color>
+    <color name="grey_shade_7">#DDDDDD</color>
+    <color name="grey_shade_9">#BABABA</color>
+    <color name="grey_shade_12">#616161</color>
+    <color name="grey_shade_13">#D2D4D6</color>
+    <color name="grey_shade_14">#D9D9D9</color>
+
+    <color name="green_shade">#A4EDAA</color>
+    <color name="green_shade_1">#35AB4F</color>
+    <color name="green_shade_2">#F2FDF3</color>
+    <color name="green_shade_3">#80D994</color>
+    <color name="green_shade_4">#727272</color>
+    <color name="red_shade_1">#E39D91</color>
+    <color name="red_shade_2">#E05340</color>
+    <color name="red_shade_3">#FBF1F0</color>
+    <color name="red_shade_4">#E96D5C</color>
+    <color name="yellow_shade_1">#D4AA3D</color>
+    <color name="yellow_shade_2">#EBD38C</color>
+    <color name="yellow_shade_3">#FCF8EE</color>
+    <color name="yellow_shade_4">#EABE4C</color>
+    <color name="yellow_shade_5">#E9DE5C</color>
+    <color name="dark_blue_shade">#172A33</color>
+    <color name="paper_tiger_color">#FBF5AE</color>
+    <color name="yellowish_1">#F5E957</color>
+    <color name="yellowish_2">#5BEDDC43</color>
+    <color name="yellowish_3">#EEE471</color>
+    <color name="yellowish_4">#D9CA21</color>
+    <color name="yellowish_5">#E9E35C</color>
+    <color name="light_blue">#55C1F7</color>
+    <color name="blue_shade_1">#2690C6</color>
+    <color name="blue_shade_3">#E1F3FC</color>
+    <color name="blue_shade_4">#AADEFD</color>
+    <color name="arty_click_deep_sky_blue">#007AFF</color>
+    <color name="pink_blur_1">#FFFAF1</color>
+    <color name="grey_shade_8">#969696</color>
+    <color name="card_bg_color">#EEEEEE</color>
+    <color name="grey_shade_4">#FBFBFB</color>
+    <color name="pastel_blue">#ABB9FF</color>
+    <color name="pale_blue">#F7F7F7</color>
+    <color name="greyish_turquoise">#597983</color>
+    <color name="red_shade">#ECC1B9</color>
+
+    <color name="disable">#dddddd</color>
+    <color name="active">#e9de5c</color>
+
+
+    <color name="saving">#FF6161</color>
+    <color name="fd">#A789E0</color>
+    <color name="rd">#2F4954</color>
+    <color name="indian_stock">#E9DE5C</color>
+    <color name="us_stock">#55C1F7</color>
+    <color name="mutual_fund">#5CC469</color>
+    <color name="other_asset">#FFA161</color>
+
+    <color name="system_error">#D43E2A</color>
 </resources>

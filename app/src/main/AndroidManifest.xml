@@ -13,10 +13,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BaseDemo"
+        android:theme="@style/App_theme"
         tools:targetApi="31" >
+
         <activity
             android:name="com.example.basedemo.MainActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

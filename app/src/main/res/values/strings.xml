@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">BaseDemo</string>
+    <string name="name">Name</string>
+
+    <string name="error_message_field_empty_email">Email is empty</string>
+    <string name="your_e_mail_address_is_wrong">Email is not valid</string>
+   <string name="i_agree_to_the_terms_and_conditions">I agree to the <font color="@color/light_blue">Terms and conditions</font></string>
+
 </resources>
