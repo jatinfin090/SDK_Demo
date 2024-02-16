@@ -1,23 +1,25 @@
-/*
 package com.example.basedemo.di
 
+import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.basedemo.BuildConfig
 import com.example.basedemo.base.BaseApplication
-import com.finvasia.jumpp.datastore.DataStoreManager
-import com.finvasia.jumpp.utils.Constants.ACCEPT
-import com.finvasia.jumpp.utils.Constants.APPLICATION_JSON
-import com.finvasia.jumpp.utils.Constants.AUTHORIZATION
-import com.finvasia.jumpp.utils.Constants.BEARER
-import com.finvasia.jumpp.utils.Constants.CONTENT_TYPE
-import com.finvasia.jumpp.utils.Constants.DEVICE_SERIAL_NUMBER
-import com.finvasia.jumpp.utils.Constants.FV_HASH_DIGEST
-import com.finvasia.jumpp.utils.Constants.FV_TIMESTAMP
-import com.finvasia.jumpp.utils.Utility
+import com.example.basedemo.datastore.DataStoreManager
+import com.example.basedemo.utils.Constants.ACCEPT
+import com.example.basedemo.utils.Constants.APPLICATION_JSON
+import com.example.basedemo.utils.Constants.AUTHORIZATION
+import com.example.basedemo.utils.Constants.BASE_URL
+import com.example.basedemo.utils.Constants.BEARER
+import com.example.basedemo.utils.Constants.CONTENT_TYPE
+import com.example.basedemo.utils.Constants.DEVICE_SERIAL_NUMBER
+import com.example.basedemo.utils.Constants.FV_HASH_DIGEST
+import com.example.basedemo.utils.Constants.FV_TIMESTAMP
+import com.example.basedemo.utils.Utility
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -25,13 +27,13 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
-const val STOCK_RETROFIT = "stockRetrofit"
-const val STOCK_MUTUAL_FUND_RETROFIT = "stockMutualFundRetrofit"
-const val BBPS_RETROFIT = "bbpsRetrofit"
-const val ACCOUNT_AGGREGATOR_RETROFIT = "accountAggregatorRetrofit"
+const val LOAN_SDK_REGISTRATION_RETROFIT = "loanSdkRegistrationRetrofit"
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -39,7 +41,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideOkHttpClient(dataStoreManager: DataStoreManager) = if (BuildConfig.DEBUG) {
+    fun provideOkHttpClient(dataStoreManager: DataStoreManager) = if ( BuildConfig.DEBUG) {
         val loggingInterceptor = HttpLoggingInterceptor()
         val supportInterceptor = SupportInterceptor(dataStoreManager)
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -63,30 +65,7 @@ object NetworkModule {
     }
 
 
-
- */
-/*   @Provides
-    @Singleton
-    @Named(STOCK_MUTUAL_FUND_RETROFIT)
-    fun providesMutualFundsRetrofit(okHttpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL + APP_KEY_MF)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build()
-    }*//*
-
-
-
-
-  */
-/*  @Provides
-    fun providesMutualFundApi(@Named(STOCK_MUTUAL_FUND_RETROFIT) retrofit: Retrofit): ApiMutualFundService {
-        return retrofit.create(ApiMutualFundService::class.java)
-    }*//*
-
-
-
-    class SupportInterceptor(val dataStoreManager: DataStoreManager) : Interceptor {
+    class SupportInterceptor(private val dataStoreManager: DataStoreManager) : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
             val original = chain.request()
             val requestBuilder = original.newBuilder()
@@ -108,16 +87,31 @@ object NetworkModule {
                     Utility.deviceId(BaseApplication.getContext()!!.applicationContext),
                 )
             }
+
             val request = requestBuilder.build()
             return chain.proceed(request)
         }
     }
 
-*/
-/*    @Provides
+    @Provides
+    @Singleton
+    @Named(LOAN_SDK_REGISTRATION_RETROFIT)
+    fun providesLoanSdkRegistrationRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .build()
+    }
+
+    @Provides
+    fun providesLoanSdkRegistrationApi(@Named(LOAN_SDK_REGISTRATION_RETROFIT) retrofit: Retrofit): LoanSdkRegistrationApi {
+        return retrofit.create(LoanSdkRegistrationApi::class.java)
+    }
+
+    @Provides
     @Singleton
     fun dataStoreManager(@ApplicationContext appContext: Context): DataStoreManager =
-        DataStoreManager(appContext)*//*
+        DataStoreManager(appContext)
 
 }
-*/

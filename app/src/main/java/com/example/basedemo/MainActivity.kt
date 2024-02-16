@@ -6,22 +6,22 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.basedemo.base.BaseActivity
-import com.example.basedemo.databinding.ActivityMainBinding
 import com.example.basedemo.eligibilty.CheckEligibilityFragment
 import com.example.basedemo.utils.Utility
 import com.example.basedemo.utils.addFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class MainActivity : BaseActivity<ActivityMainBinding>(),
+@AndroidEntryPoint
+class MainActivity : BaseActivity(),
     CheckEligibilityFragment.OnSaveButtonClickListener {
 
 
-    override val layoutResId: Int = R.layout.activity_main
+    val layoutResId: Int = R.layout.activity_main
     val fragment = CheckEligibilityFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utility.fullParentWindow(window)
-        setContentView(binding.root)
+        setContentView(layoutResId)
 
 
         fragment.setOnSaveButtonClickListener(this)
@@ -29,15 +29,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     }
 
     private fun init() {
-
-        binding.apply {
-            lifecycleOwner = this@MainActivity
             openFragment(
                 fragment,
                 R.id.mainActivityFrameLayout,
                 "tag"
             )
-        }
     }
 
 

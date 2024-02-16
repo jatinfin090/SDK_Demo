@@ -1,11 +1,18 @@
 package com.example.basedemo.utils
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
+import android.provider.Settings
 import android.view.View
 import android.view.Window
 import android.view.WindowInsetsController
 import android.view.WindowManager
+import androidx.annotation.RequiresApi
+import java.nio.charset.StandardCharsets
+import java.util.Base64
+import javax.crypto.Mac
+import javax.crypto.spec.SecretKeySpec
 
 object Utility {
 
@@ -52,5 +59,20 @@ object Utility {
         win.attributes = winParams
     }
 
+
+    fun deviceId(ctx: Context): String {
+        return Settings.Secure.getString(ctx.contentResolver, Settings.Secure.ANDROID_ID)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun generateHmacSha256Signature(secretKey: String, data: String): String {
+        val secretKeySpec =
+            SecretKeySpec(secretKey.toByteArray(StandardCharsets.UTF_8), "HmacSHA256")
+        val mac = Mac.getInstance("HmacSHA256")
+        mac.init(secretKeySpec)
+        val rawHmac = mac.doFinal(data.toByteArray(StandardCharsets.UTF_8))
+        val base64Hmac = Base64.getEncoder().encodeToString(rawHmac)
+        return base64Hmac
+    }
 
 }

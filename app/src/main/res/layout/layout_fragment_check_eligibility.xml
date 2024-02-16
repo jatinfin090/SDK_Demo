@@ -6,6 +6,12 @@
 
         <import type="android.view.View" />
 
+        <variable
+            name="viewModel"
+            type="com.example.basedemo.eligibilty.CheckEligibilityViewModel" />
+
+
+
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
