@@ -2,18 +2,27 @@ package com.example.basedemo.eligibilty
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.basedemo.R
 import com.example.basedemo.base.BaseFragment
 import com.example.basedemo.databinding.LayoutFragmentCheckEligibilityBinding
 import com.example.basedemo.datastore.DataStoreManager
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBinding>() {
+    /*
 
-    private val vm: CheckEligibilityViewModel by viewModels()
+       private val vm: CheckEligibilityViewModel by viewModels {
+            viewModelFactory {
+                CheckEligibilityViewModel(
+                    BaseApplication.networkModule.loanSdkLandingPageRepository
+                )
+            }
+        }
+    */
+
+
+    private lateinit var viewModelFactory: CheckEligibilityViewModelFactory
     private var onSaveButtonClickListener: OnSaveButtonClickListener? = null
 
     interface OnSaveButtonClickListener {
@@ -29,7 +38,6 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
         fun newInstance() = CheckEligibilityFragment()
     }
 
-    @Inject
     lateinit var dataStoreManager: DataStoreManager
 
 
@@ -43,26 +51,35 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
     }
 
     private fun init() {
+        viewModelFactory = CheckEligibilityViewModelFactory()
+
+        val vm = ViewModelProvider(this, viewModelFactory)[CheckEligibilityViewModel::class.java]
+
+        dataStoreManager = DataStoreManager(requireContext())
+
+
+
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            viewModel = vm
-            vm.getTimeStampDigest()
+
+            vm.getTimeStampDigest(dataStoreManager)
             binding?.btnContinue?.setOnClickListener {
                 //   onSaveButtonClickListener?.onSaveButtonClicked("Name: " + binding.edtName.text.toString() + "\n Comes from Loan SDK")
 
 
-                  vm.loanSdkRegisterUSer(
-                      "8080998080",
-                      "abcd",
-                      "abcd",
-                      "uuu",
-                      "abcd",
-                      "4",
-                      "0.0.4",
-                      "Android",
-                      true,
-                      "80.65",
-                      "78.92")
+                vm.loanSdkRegisterUSer(
+                    "8080998080",
+                    "abcd",
+                    "abcd",
+                    "uuu",
+                    "abcd",
+                    "4",
+                    "0.0.4",
+                    "Android",
+                    true,
+                    "80.65",
+                    "78.92"
+                )
 
             }
 

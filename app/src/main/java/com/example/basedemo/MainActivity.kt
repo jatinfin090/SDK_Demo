@@ -9,9 +9,8 @@ import com.example.basedemo.base.BaseActivity
 import com.example.basedemo.eligibilty.CheckEligibilityFragment
 import com.example.basedemo.utils.Utility
 import com.example.basedemo.utils.addFragment
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+
 class MainActivity : BaseActivity(),
     CheckEligibilityFragment.OnSaveButtonClickListener {
 
@@ -29,11 +28,11 @@ class MainActivity : BaseActivity(),
     }
 
     private fun init() {
-            openFragment(
-                fragment,
-                R.id.mainActivityFrameLayout,
-                "tag"
-            )
+        openFragment(
+            fragment,
+            R.id.mainActivityFrameLayout,
+            "tag"
+        )
     }
 
 

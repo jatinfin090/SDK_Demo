@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.basedemo.R
 import com.example.basedemo.datastore.DataStoreManager
 import okhttp3.OkHttpClient
-import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -26,7 +25,6 @@ abstract class BaseActivity : AppCompatActivity() {
     private val permissionsRequestCode = 123
     private var permissionCheck = 0
 
-    @Inject
     lateinit var dataStoreManager: DataStoreManager
 
     override fun onCreate(savedInstanceState: Bundle?) {

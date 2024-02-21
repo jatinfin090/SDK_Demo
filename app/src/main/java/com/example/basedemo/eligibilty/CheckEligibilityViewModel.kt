@@ -10,17 +10,12 @@ import com.example.basedemo.model.LoanSdkRegisterUserRequest
 import com.example.basedemo.utils.Constants
 import com.example.basedemo.utils.Utility
 import com.example.network.DataHandler2
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class CheckEligibilityViewModel @Inject constructor(
-    private val dataStoreManager: DataStoreManager,
-    private val loanSdkLandingPageRepository: LoanSdkLandingPageRepository
-) : BaseViewModel() {
+
+class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSdkLandingPageRepository) : BaseViewModel() {
 
     private val eventChannel = Channel<Event>(Channel.BUFFERED)
     val eventFlow = eventChannel.receiveAsFlow()
@@ -70,7 +65,7 @@ class CheckEligibilityViewModel @Inject constructor(
         }
     }
 
-    fun getTimeStampDigest() {
+    fun getTimeStampDigest(dataStoreManager: DataStoreManager) {
         viewModelScope.launch {
             val timeStamp = (System.currentTimeMillis() / 1000).toString()
             val signature = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

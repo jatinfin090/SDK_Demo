@@ -9,17 +9,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class LoanSdkLandingPageRepository @Inject constructor(
+
+class LoanSdkLandingPageRepository(
     private val apiLoanSdkRegister: LoanSdkRegistrationApi,
 ) : BaseApiResponse2() {
 
-    suspend fun loanSdkRegisterUSer(loanSdkRegisterUserResponse: LoanSdkRegisterUserRequest): Flow<DataHandler2<BaseResponse<LoanSdkRegisterUserResponse>>> {
+    suspend fun loanSdkRegisterUSer(loanSdkRegisterUserRequest: LoanSdkRegisterUserRequest): Flow<DataHandler2<BaseResponse<LoanSdkRegisterUserResponse>>> {
         return flow {
-            emit(safeApiCall { apiLoanSdkRegister.loanSdkRegisterUSer(loanSdkRegisterUserResponse) })
+            emit(safeApiCall { apiLoanSdkRegister.loanSdkRegisterUSer(loanSdkRegisterUserRequest) })
         }.flowOn(Dispatchers.IO)
     }
 

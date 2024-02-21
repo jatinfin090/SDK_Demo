@@ -15,7 +15,6 @@ import okhttp3.OkHttpClient
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import java.util.logging.Handler
-import javax.inject.Inject
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
@@ -29,7 +28,6 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     var delay = 5000
     private val okHttpClient = OkHttpClient()
 
-    @Inject
     lateinit var dataStoreManager1: DataStoreManager
     var webSocket: WebSocket? = null
 

@@ -1,9 +1,11 @@
 package com.example.basedemo.base
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.example.basedemo.datastore.DataStoreManager
+import com.example.basedemo.di.NetworkModule
+import com.example.basedemo.di.NetworkModuleImpl
 
-@HiltAndroidApp
+
 class BaseApplication : Application() {
 
 
@@ -15,11 +17,17 @@ class BaseApplication : Application() {
         public final fun getContext(): BaseApplication? {
             return instance
         }
+
+        lateinit var networkModule : NetworkModule
+        lateinit var dataStoreManager: DataStoreManager
     }
 
     override fun onCreate() {
         instance = this
         super.onCreate()
+        networkModule = NetworkModuleImpl(this)
+        dataStoreManager = DataStoreManager(this)
+
     }
 
 
