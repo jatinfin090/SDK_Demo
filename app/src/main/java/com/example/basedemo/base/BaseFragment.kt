@@ -11,6 +11,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.example.basedemo.datastore.DataStoreManager
+import com.example.basedemo.di.NetworkSDKModule
+import com.example.basedemo.di.NetworkSdkModuleImpl
 import okhttp3.OkHttpClient
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
@@ -30,7 +32,8 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     lateinit var dataStoreManager1: DataStoreManager
     var webSocket: WebSocket? = null
-
+private lateinit var networkSDKModule: NetworkSDKModule
+private lateinit var dataStoreManager: DataStoreManager
     @LayoutRes
     abstract fun getLayoutId(): Int
     override fun onCreateView(
@@ -41,6 +44,8 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         binding = DataBindingUtil.inflate<T>(inflater, getLayoutId(), container, false)
         binding?.lifecycleOwner = this
         rootView = binding!!.root
+        networkSDKModule = NetworkSdkModuleImpl(requireContext())
+        dataStoreManager = DataStoreManager(requireContext())
         return rootView
     }
 

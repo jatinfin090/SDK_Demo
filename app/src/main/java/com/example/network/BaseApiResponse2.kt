@@ -2,7 +2,7 @@ package com.example.network
 
 import ServerException
 import com.example.basedemo.R
-import com.example.basedemo.base.BaseApplication
+import com.example.basedemo.base.BaseSDKApplication
 import com.example.basedemo.utils.Constants.ERROR_TOKEN_EXPIRED
 import com.example.basedemo.utils.Constants.UNAUTHORISED_USER
 import retrofit2.HttpException
@@ -18,7 +18,7 @@ abstract class BaseApiResponse2 {
             when (throwable) {
                 is IOException -> {
                     return DataHandler2.NetworkError(
-                        BaseApplication.getContext()?.getString(R.string.internet_issue)!!,
+                        BaseSDKApplication.getContext()?.getString(R.string.internet_issue)!!,
                     )
                 }
 

@@ -17,12 +17,11 @@ import com.example.basedemo.utils.Constants.USER_MOBILE_NUMBER
 import com.example.basedemo.utils.Constants.USER_NAME
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
 private const val PREFERENCES_NAME = "loanSDK"
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = PREFERENCES_NAME)
 
-class DataStoreManager @Inject constructor(private val context: Context) {
+class DataStoreManager (private val context: Context) {
 
     companion object {
         val userMobile = stringPreferencesKey(name = USER_MOBILE_NUMBER)

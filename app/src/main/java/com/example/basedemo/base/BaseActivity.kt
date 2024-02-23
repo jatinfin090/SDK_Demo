@@ -8,6 +8,8 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.example.basedemo.R
 import com.example.basedemo.datastore.DataStoreManager
+import com.example.basedemo.di.NetworkSDKModule
+import com.example.basedemo.di.NetworkSdkModuleImpl
 import okhttp3.OkHttpClient
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -26,10 +28,12 @@ abstract class BaseActivity : AppCompatActivity() {
     private var permissionCheck = 0
 
     lateinit var dataStoreManager: DataStoreManager
-
+lateinit var networkSDKModule: NetworkSDKModule
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        dataStoreManager = DataStoreManager(applicationContext)
+        networkSDKModule = NetworkSdkModuleImpl(applicationContext)
     }
 
 

@@ -1,9 +1,8 @@
 plugins {
-    id 'com.android.application'
-    //id 'com.android.library'
+    //id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-   // id 'com.google.dagger.hilt.android'
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs'
     id 'org.jetbrains.kotlin.plugin.serialization'
@@ -14,7 +13,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.basedemo"
+      //  applicationId "com.example.basedemo"
         minSdk 24
         targetSdk 34
         versionCode 1
@@ -106,7 +105,7 @@ dependencies {
 
     // optional - Guava ListenableFuture support
     implementation "androidx.paging:paging-guava:$paging_version"
-
+  //  implementation 'com.rollbar:rollbar-android:1.+'
 }
 kapt {
     correctErrorTypes true

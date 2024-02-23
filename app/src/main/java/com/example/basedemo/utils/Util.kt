@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.basedemo.R
-import com.example.basedemo.base.BaseApplication
+import com.example.basedemo.base.BaseSDKApplication
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -69,7 +69,7 @@ fun Context.toast(message: String) {
 }
 
 fun validateEmail(email: String): String? {
-    val context = BaseApplication.getContext()?.applicationContext
+    val context = BaseSDKApplication.getContext()?.applicationContext
     return when {
         email.isEmpty() -> context?.getString(R.string.error_message_field_empty_email)
         !android.util.Patterns.EMAIL_ADDRESS.matcher(email)

@@ -2,6 +2,7 @@ package com.example.basedemo.eligibilty
 
 import android.os.Build
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.basedemo.base.BaseViewModel
 import com.example.basedemo.datastore.DataStoreManager
@@ -15,11 +16,17 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 
-class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSdkLandingPageRepository) : BaseViewModel() {
+class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSdkLandingPageRepository) :
+    BaseViewModel() {
 
     private val eventChannel = Channel<Event>(Channel.BUFFERED)
     val eventFlow = eventChannel.receiveAsFlow()
 
+    val usertoken = MutableLiveData<String>()
+
+    fun getUserToken(token: String) {
+        usertoken.value = token
+    }
 
     fun loanSdkRegisterUSer(
         mobileNumber: String, model: String, manufacturer: String,
@@ -30,6 +37,7 @@ class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSd
     ) {
 
         viewModelScope.launch {
+        //    Rollbar.instance().info("viewModelScope.launch")
             val loanSdkRegisterUserRequest = LoanSdkRegisterUserRequest(
                 mobileNumber,
                 model,
@@ -48,15 +56,23 @@ class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSd
                     when (response) {
                         is DataHandler2.SUCCESS -> {
                             if (response.data?.success == true) {
-
+                          //      Rollbar.instance().info("response.data?.success == true")
                                 Log.e("k_response", response.data.data.toString())
 
+                                usertoken.postValue(response.data.data.toString())
+                            //    Rollbar.instance().info("after token save" )
+
+                                //onEvent(Event.ResponseToken(response.data.data.toString()))
                             } else {
                                 Log.e("k_response_error", response.data.toString())
+                              //  Rollbar.instance().info("response.data?.error == true")
+
                             }
                         }
 
                         is DataHandler2.ERROR -> {
+                            //Rollbar.instance().info("Error case")
+
                         }
 
                         else -> {}
@@ -73,6 +89,9 @@ class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSd
             } else {
                 TODO("VERSION.SDK_INT < O")
             }
+
+
+
             dataStoreManager.saveHashDigest(signature)
             dataStoreManager.saveTimeStamp(timeStamp)
         }
@@ -86,6 +105,8 @@ class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSd
     sealed class Event {
         data class ShowDialog(val message: String) : Event()
         data class HideDialog(val message: String) : Event()
+
+        data class ResponseToken(val token: String) : Event()
     }
 
 }

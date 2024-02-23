@@ -17,12 +17,14 @@ class MainActivity : BaseActivity(),
 
     val layoutResId: Int = R.layout.activity_main
     val fragment = CheckEligibilityFragment()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utility.fullParentWindow(window)
         setContentView(layoutResId)
-
-
+      /*  Rollbar.init(this)
+        Rollbar.instance().info("MainActivity")*/
         fragment.setOnSaveButtonClickListener(this)
         init()
     }

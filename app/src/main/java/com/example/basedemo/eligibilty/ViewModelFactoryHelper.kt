@@ -1,3 +1,4 @@
+/*
 package com.example.basedemo.eligibilty
 
 import androidx.lifecycle.ViewModelProvider
@@ -8,4 +9,4 @@ fun <VM : CheckEligibilityViewModel> viewModelFactory(initializer: () -> VM): Vi
             return initializer() as T
         }
     }
-}
+}*/

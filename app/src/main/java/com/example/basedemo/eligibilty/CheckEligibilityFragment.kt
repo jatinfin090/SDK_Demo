@@ -1,28 +1,18 @@
 package com.example.basedemo.eligibilty
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.example.basedemo.R
 import com.example.basedemo.base.BaseFragment
 import com.example.basedemo.databinding.LayoutFragmentCheckEligibilityBinding
 import com.example.basedemo.datastore.DataStoreManager
+import com.example.basedemo.di.NetworkSdkModuleImpl
 
 
 class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBinding>() {
-    /*
 
-       private val vm: CheckEligibilityViewModel by viewModels {
-            viewModelFactory {
-                CheckEligibilityViewModel(
-                    BaseApplication.networkModule.loanSdkLandingPageRepository
-                )
-            }
-        }
-    */
-
-
-    private lateinit var viewModelFactory: CheckEligibilityViewModelFactory
     private var onSaveButtonClickListener: OnSaveButtonClickListener? = null
 
     interface OnSaveButtonClickListener {
@@ -38,7 +28,7 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
         fun newInstance() = CheckEligibilityFragment()
     }
 
-    lateinit var dataStoreManager: DataStoreManager
+    private lateinit var dataStoreManager: DataStoreManager
 
 
     override fun getLayoutId(): Int {
@@ -51,20 +41,20 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
     }
 
     private fun init() {
-        viewModelFactory = CheckEligibilityViewModelFactory()
+        var viewModelFactory =
+            CheckEligibilityViewModelFactory(NetworkSdkModuleImpl(requireContext()))
 
         val vm = ViewModelProvider(this, viewModelFactory)[CheckEligibilityViewModel::class.java]
 
         dataStoreManager = DataStoreManager(requireContext())
-
-
 
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
 
             vm.getTimeStampDigest(dataStoreManager)
             binding?.btnContinue?.setOnClickListener {
-                //   onSaveButtonClickListener?.onSaveButtonClicked("Name: " + binding.edtName.text.toString() + "\n Comes from Loan SDK")
+
+              //  onSaveButtonClickListener?.onSaveButtonClicked("Name: " + binding?.edtName?.text.toString() + "\n" + "Token:SDK ")
 
 
                 vm.loanSdkRegisterUSer(
@@ -80,6 +70,11 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
                     "80.65",
                     "78.92"
                 )
+
+                vm.usertoken.observe(viewLifecycleOwner) {
+                    Log.e("k_response+", it)
+                    onSaveButtonClickListener?.onSaveButtonClicked("Name: " + binding?.edtName?.text.toString() + "\n" + "Token: " + it)
+                }
 
             }
 
