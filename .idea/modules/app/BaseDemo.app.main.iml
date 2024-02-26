@@ -30,7 +30,6 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/b674e4a9aa0f3c7c8def96b8bbc80c8e/transformed/navigation-ui-ktx-2.5.3-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/262c9e08d596a15870a4f8c0c2edbb24/transformed/navigation-ui-2.5.3-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/b30c653434dd837ab66c1cdf588fe8fc/transformed/material-1.11.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/9d1b61d83b1d85a800ec53f892ee115d/transformed/lifecycle-extensions-2.2.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/84a533f8bed3fee89e4fd5d884f7699f/transformed/appcompat-1.6.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/9b2e047093ed3e49e4bfb3e7a0a2b7c7/transformed/legacy-support-v4-1.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/776c306696eb0a35fd2ee71a9d5e8f44/transformed/glide-4.14.2-api.jar</arg>
@@ -124,8 +123,6 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/b3f2a63c2d59afcffc07df5f46693b44/transformed/savedstate-ktx-1.2.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/f676ed63b8e88f61d3914b5e2427a830/transformed/savedstate-1.2.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/efefdc0865725cab86e062b863fe361d/transformed/cardview-1.0.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/f5b335140fbec111778957202db3960d/transformed/core-runtime-2.2.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.2.0/5e1b8b81dfd5f52c56a8d53b18ca759c19a301f3/core-common-2.2.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ecdedf9f2883bc0ea28c688a196821c9/transformed/firebase-datatransport-18.1.7-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/5fa30b2f2e5e28e20c3fb8e40fa0892c/transformed/transport-backend-cct-3.1.8-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/0e5fe92fdae4d05740d890a2636774b8/transformed/transport-runtime-3.1.8-api.jar</arg>
@@ -135,6 +132,8 @@
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-encoders/17.0.0/26f52dc549c42575b155f8c720e84059ee600a85/firebase-encoders-17.0.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/fb540fd5d5a4634f423a8217130ea6cf/transformed/firebase-components-17.1.5-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/806fab5e391c798272c45b43e32af10a/transformed/gifdecoder-4.14.2-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/f5b335140fbec111778957202db3960d/transformed/core-runtime-2.2.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.2.0/5e1b8b81dfd5f52c56a8d53b18ca759c19a301f3/core-common-2.2.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/f11b01835a3b770df0423c3c6552f885/transformed/documentfile-1.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/578d6759114330f3cf8abe5a4344d941/transformed/localbroadcastmanager-1.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/1481a22a7b1c7723c3f02e37b5e6756f/transformed/print-1.0.0-api.jar</arg>
@@ -342,7 +341,6 @@
     <orderEntry type="library" name="Gradle: androidx.swiperefreshlayout:swiperefreshlayout:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.asynclayoutinflater:asynclayoutinflater:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-ktx:2.6.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-extensions:2.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-messaging:23.3.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-iid-interop:17.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.datatransport:transport-api:3.0.0@aar" level="project" />

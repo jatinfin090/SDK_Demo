@@ -45,7 +45,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColorHint">@color/grey_shade_1</item>
-        <item name="android:background">@drawable/bg_edt_grey_rounded_2</item>
+        <item name="android:background">@drawable/bgsdk_edt_grey_rounded_2</item>
         <item name="boxBackgroundColor">@android:color/transparent</item>
         <item name="boxStrokeWidth">0dp</item>
         <item name="boxStrokeColor">@color/grey_shade_4</item>

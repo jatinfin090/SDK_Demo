@@ -1,7 +1,6 @@
 package com.example.basedemo.eligibilty
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import androidx.lifecycle.ViewModelProvider
@@ -10,10 +9,14 @@ import com.example.basedemo.base.BaseFragment
 import com.example.basedemo.databinding.LayoutFragmentCheckEligibilityBinding
 import com.example.basedemo.datastore.DataStoreManager
 import com.example.basedemo.di.NetworkSdkModuleImpl
+import com.example.basedemo.model.LoanSdkRegisterUserRequest
 import com.example.basedemo.model.LoanSdkSaveRequest
 import com.example.basedemo.utils.SupportedDatePickerDialog
 import com.example.basedemo.utils.Utility
 import com.example.basedemo.utils.hideKeyboard
+import com.example.basedemo.utils.observeInLifecycle
+import com.example.basedemo.utils.validateEmail
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -30,6 +33,7 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
     }
 
     private var selectedGender: Gender? = null
+    private lateinit var userSaveRequest: LoanSdkSaveRequest
 
     interface OnSaveButtonClickListener {
         fun onSaveButtonClicked(data: String)
@@ -57,7 +61,7 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
     }
 
     private fun init() {
-        var viewModelFactory =
+        val viewModelFactory =
             CheckEligibilityViewModelFactory(NetworkSdkModuleImpl(requireContext()))
 
         val vm = ViewModelProvider(this, viewModelFactory)[CheckEligibilityViewModel::class.java]
@@ -68,9 +72,7 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
 
-            binding?.ivCalender?.setOnClickListener {
-
-
+            binding?.edtDOB?.setOnClickListener {
                 showCalendar()
             }
 
@@ -93,20 +95,19 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
                 binding?.llOther?.isSelected = true
                 binding?.llFemale?.isSelected = false
                 binding?.llMale?.isSelected = false
-
                 selectedGender = Gender.Other
             }
 
-
-
             binding?.cbCondition?.setOnCheckedChangeListener { buttonView, isChecked ->
 
+
+
                 if (isChecked) {
+                    val emailStatus=  validateEmail(binding?.edtEmail?.text.toString())
 
                     if (binding?.edtName?.text.toString()
                             .isNotEmpty() && binding?.edtMobileNo?.text.toString().isNotEmpty()
-                        && binding?.edtEmail?.text.toString()
-                            .isNotEmpty() && binding?.edtPAN?.text.toString().isNotEmpty()
+                        && emailStatus?.isEmpty() == true && binding?.edtPAN?.text.toString().isNotEmpty()
                         && binding?.edtDOB?.text.toString().isNotEmpty() && selectedGender != null
                     ) {
 
@@ -123,61 +124,66 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
             }
 
 
-
-
-
             binding?.btnContinue?.setOnClickListener {
 
                 runBlocking {
                     dataStoreManager.saveAuthToken("")
                 }
 
-                val userSaveRequest = LoanSdkSaveRequest(
-                    "Tushar Verma",
-                    "Male",
+
+                val loanSdkRegisterRequest = LoanSdkRegisterUserRequest(
+                    edtMobileNo.text.toString(),
+                    "abcd",   /// build.model
+                    "abcd",  ///
+                    "uuu",  //// api issue for now  as device id deviceId(68)
+                    "abcd",   /// firebase
+                    "4",    //// same as jumpp 4
+                    "0.0.4",  /// build.version.sdkint
+                    "Android",  /////const
+                    true,  //// no need
+                    "80.65",
+                    "78.92"   ///OnBoardingMobileNumberFragment
+                )
+
+                 userSaveRequest = LoanSdkSaveRequest(
+                    binding?.edtName?.text.toString(),
+                    selectedGender.toString(),
                     binding?.edtPAN?.text.toString(),
-                    "tverrma@finvasia.in",
-                    "8080998080",
-                    "1995-05-23",
+                     binding?.edtEmail?.text.toString(),
+                     binding?.edtMobileNo?.text.toString(),
+                     binding?.edtDOB?.text.toString(),
                     1
                 )
 
 
-
                 vm.loanSdkRegisterUSer(
-                    "8080998080",
-                    "abcd",
-                    "abcd",
-                    "uuu",
-                    "abcd",
-                    "4",
-                    "0.0.4",
-                    "Android",
-                    true,
-                    "80.65",
-                    "78.92",
+                    loanSdkRegisterRequest,
                     dataStoreManager
-
                 )
 
-                vm.userToken.observe(viewLifecycleOwner) {
-
-                    vm.loanSdkSaveUser(userSaveRequest)
-                }
-
-                vm.userSaveResponse.observe(viewLifecycleOwner) {
-                    Log.e("k_responseSave", it)
-                    onSaveButtonClickListener?.onSaveButtonClicked(it)
-
-                }
-
             }
+
+
+            vm.eventFlow.onEach {
+                when (it) {
+
+                    is CheckEligibilityViewModel.Event.ResponseToken -> {
+                        vm.loanSdkSaveUser(userSaveRequest)
+                    }
+
+                    is CheckEligibilityViewModel.Event.ResponseSave -> {
+                        onSaveButtonClickListener?.onSaveButtonClicked(it.response)
+                    }
+
+                    else -> {}
+                }
+            }.observeInLifecycle(viewLifecycleOwner)
 
         }
     }
 
 
-    fun showCalendar() {
+    private fun showCalendar() {
         hideKeyboard()
         val supportedDatePickerDialog =
             SupportedDatePickerDialog(

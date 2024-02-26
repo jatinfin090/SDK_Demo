@@ -2,7 +2,6 @@ package com.example.basedemo.eligibilty
 
 import android.os.Build
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.basedemo.base.BaseViewModel
 import com.example.basedemo.datastore.DataStoreManager
@@ -23,40 +22,18 @@ class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSd
     private val eventChannel = Channel<Event>(Channel.BUFFERED)
     val eventFlow = eventChannel.receiveAsFlow()
 
-    val userToken = MutableLiveData<String>()
-    val userSaveResponse = MutableLiveData<String>()
-
-
     fun loanSdkRegisterUSer(
-        mobileNumber: String, model: String, manufacturer: String,
-        serialNumber: String, deviceToken: String, deviceAuthType: String,
-        operatingSysVersion: String, deviceType: String,
-        isWhatsappActivated: Boolean, latitude: String,
-        longitude: String, dataStoreManager: DataStoreManager
+        loanSdkRegisterUserRequest: LoanSdkRegisterUserRequest,
+        dataStoreManager: DataStoreManager
     ) {
-
         viewModelScope.launch {
-            val loanSdkRegisterUserRequest = LoanSdkRegisterUserRequest(
-                mobileNumber,
-                model,
-                manufacturer,
-                serialNumber,
-                deviceToken,
-                deviceAuthType,
-                operatingSysVersion,
-                deviceType,
-                isWhatsappActivated,
-                latitude,
-                longitude
-            )
             loanSdkLandingPageRepository.loanSdkRegisterUSer(loanSdkRegisterUserRequest)
                 .collect { response ->
                     when (response) {
                         is DataHandler2.SUCCESS -> {
                             if (response.data?.success == true) {
                                 dataStoreManager.saveAuthToken(response.data.data?.accessToken.toString())
-                                userToken.postValue(response.data.data?.accessToken.toString())
-
+                                onEvent(Event.ResponseToken(response.data.data?.accessToken.toString()))
                             } else {
                                 Log.e("response_error", response.data.toString())
                             }
@@ -78,10 +55,7 @@ class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSd
                 .collect { response ->
                     when (response) {
                         is DataHandler2.SUCCESS -> {
-                            Log.e("k_Saveresponseerror", response.data?.message.toString())
-                            userSaveResponse.postValue(response.data?.message.toString())
-
-                            onEvent(Event.ResponseToken(response.data?.message.toString()))
+                            onEvent(Event.ResponseSave(response.data?.message.toString()))
                         }
 
                         is DataHandler2.ERROR -> {
@@ -109,10 +83,11 @@ class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSd
         }
     }
 
-fun collectDOB(){
-    onEvent(Event.DOB("dob"))
+    fun collectDOB() {
+        onEvent(Event.DOB("dob"))
 
-}
+    }
+
     private fun onEvent(event: Event) {
         viewModelScope.launch { eventChannel.send(event) }
     }
@@ -123,6 +98,7 @@ fun collectDOB(){
         data class HideDialog(val message: String) : Event()
 
         data class ResponseToken(val token: String) : Event()
+        data class ResponseSave(val response: String) : Event()
 
         data class DOB(val dob: String) : Event()
     }

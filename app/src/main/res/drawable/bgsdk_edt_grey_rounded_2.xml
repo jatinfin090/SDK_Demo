@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected state -->
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <!-- Change the stroke color when selected -->
+            <stroke
+                android:width="@dimen/_1sdp"
+                android:color="@color/light_blue" />
+            <corners android:radius="@dimen/_10sdp" />
+            <solid android:color="@color/grey_shade_4" />
+        </shape>
+    </item>
+    <!-- Default state -->
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Default stroke color -->
+            <stroke
+                android:width="@dimen/_1sdp"
+                android:color="@color/grey_shade_2" />
+            <corners android:radius="@dimen/_10sdp" />
+            <solid android:color="@color/grey_shade_4" />
+        </shape>
+    </item>
+</selector>

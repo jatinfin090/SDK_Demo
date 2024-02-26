@@ -76,8 +76,9 @@
                             android:id="@+id/edtName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_edt_grey_rounded_2"
+                            android:background="@drawable/bgsdk_edt_grey_rounded_2"
                             android:fontFamily="@font/manrope_medium"
+                            android:inputType="textPersonName"
                             android:maxLines="1"
                             android:singleLine="true"
                             android:textSize="@dimen/_16ssp" />
@@ -102,7 +103,7 @@
                             android:id="@+id/edtMobileNo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_edt_grey_rounded_2"
+                            android:background="@drawable/bgsdk_edt_grey_rounded_2"
                             android:fontFamily="@font/manrope_medium"
                             android:inputType="number"
                             android:maxLines="1"
@@ -128,7 +129,7 @@
                             android:id="@+id/edtEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_edt_grey_rounded_2"
+                            android:background="@drawable/bgsdk_edt_grey_rounded_2"
                             android:fontFamily="@font/manrope_medium"
                             android:inputType="textEmailAddress"
                             android:maxLines="1"
@@ -154,7 +155,7 @@
                             android:id="@+id/edtPAN"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_edt_grey_rounded_2"
+                            android:background="@drawable/bgsdk_edt_grey_rounded_2"
                             android:fontFamily="@font/manrope_medium"
                             android:textAllCaps="true"
                             android:maxLines="1"
@@ -163,16 +164,17 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-
+<!--
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_21sdp">
+                        android:layout_marginTop="@dimen/_21sdp">-->
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilDOB"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_21sdp"
                             android:hint="Date of birth"
                             app:boxStrokeColor="@color/grey_shade_1"
                             app:boxStrokeWidth="0dp"
@@ -186,9 +188,10 @@
                                 android:id="@+id/edtDOB"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/bg_edt_grey_rounded_2"
+                                android:background="@drawable/bgsdk_edt_grey_rounded_2"
                                 android:fontFamily="@font/manrope_medium"
                                 android:maxLines="1"
+                                android:drawableEnd="@drawable/ic_calender"
                                 android:singleLine="true"
                                 android:editable="false"
                                 android:textSize="@dimen/_16ssp" />
@@ -196,7 +199,7 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
 
-                        <androidx.appcompat.widget.AppCompatImageView
+                <!--        <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/ivCalender"
@@ -208,7 +211,7 @@
                             />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
+-->
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -233,14 +236,14 @@
                             android:id="@+id/llMale"
                             android:layout_marginEnd="@dimen/_8sdp"
                             android:layout_weight="1"
-                            android:background="@drawable/bg_edt_grey_rounded_2"
+                            android:background="@drawable/bgsdk_edt_grey_rounded_2"
                             android:gravity="center"
                             android:padding="@dimen/_20sdp">
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:drawableStart="@drawable/ic_male_selected"
+                                android:drawableStart="@drawable/ic_male_inactive"
                                 android:drawablePadding="@dimen/_6sdp"
                                 android:gravity="center"
                                 android:text="Male" />
@@ -252,14 +255,14 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/llFemale"
                             android:layout_weight="1"
-                            android:background="@drawable/bg_edt_grey_rounded_2"
+                            android:background="@drawable/bgsdk_edt_grey_rounded_2"
                             android:gravity="center"
                             android:padding="@dimen/_20sdp">
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:drawableStart="@drawable/ic_female"
+                                android:drawableStart="@drawable/ic_female_inactive"
                                 android:drawablePadding="@dimen/_6sdp"
                                 android:gravity="center"
                                 android:text="Female" />
@@ -272,14 +275,14 @@
                             android:id="@+id/llOther"
                             android:layout_marginStart="@dimen/_8sdp"
                             android:layout_weight="1"
-                            android:background="@drawable/bg_edt_grey_rounded_2"
+                            android:background="@drawable/bgsdk_edt_grey_rounded_2"
                             android:gravity="center"
                             android:padding="@dimen/_20sdp">
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:drawableStart="@drawable/ic_other"
+                                android:drawableStart="@drawable/ic_other_inactive"
                                 android:drawablePadding="@dimen/_6sdp"
                                 android:gravity="center"
                                 android:text="Other" />
