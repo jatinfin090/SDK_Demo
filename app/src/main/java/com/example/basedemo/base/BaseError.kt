@@ -1,6 +1,5 @@
 package com.example.basedemo.base
 
-
 data class BaseError(
     val `data`: Any,
     val errors: List<Error>,

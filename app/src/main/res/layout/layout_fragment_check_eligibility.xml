@@ -11,7 +11,6 @@
             type="com.example.basedemo.eligibilty.CheckEligibilityViewModel" />
 
 
-
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -52,75 +51,163 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fillViewport="true"
-
-                >
+                android:fillViewport="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilName"
-                        style="@style/TilEditable"
-                        android:hint="@string/name">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_21sdp"
+                        android:hint="@string/name"
+                        app:boxBackgroundColor="@android:color/transparent"
+                        app:boxStrokeColor="@color/grey_shade_1"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:hintTextColor="@color/grey_shade_1">
+
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edtName"
-                            style="@style/TieEdit"
-                            android:inputType="textCapWords" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_edt_grey_rounded_2"
+                            android:fontFamily="@font/manrope_medium"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_16ssp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilMobileNo"
-                        style="@style/TilEditable"
-                        android:hint="Mobile number">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_21sdp"
+                        android:hint="Mobile number"
+                        app:boxBackgroundColor="@android:color/transparent"
+                        app:boxStrokeColor="@color/grey_shade_1"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:hintTextColor="@color/grey_shade_1">
+
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edtMobileNo"
-                            style="@style/TieEdit"
-                            android:inputType="number" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_edt_grey_rounded_2"
+                            android:fontFamily="@font/manrope_medium"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_16ssp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilEmail"
-                        style="@style/TilEditable"
-                        android:hint="Email address">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_21sdp"
+                        android:hint="Email address"
+                        app:boxBackgroundColor="@android:color/transparent"
+                        app:boxStrokeColor="@color/grey_shade_1"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:hintTextColor="@color/grey_shade_1">
+
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edtEmail"
-                            style="@style/TieEdit"
-                            android:inputType="textEmailAddress" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_edt_grey_rounded_2"
+                            android:fontFamily="@font/manrope_medium"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_16ssp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilPAN"
-                        style="@style/TilEditable"
-                        android:hint="PAN number">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_21sdp"
+                        android:hint="PAN Number"
+                        app:boxBackgroundColor="@android:color/transparent"
+                        app:boxStrokeColor="@color/grey_shade_1"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:hintTextColor="@color/grey_shade_1">
+
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edtPAN"
-                            style="@style/TieEdit"
-                            android:inputType="textCapWords" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_edt_grey_rounded_2"
+                            android:fontFamily="@font/manrope_medium"
+                            android:textAllCaps="true"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_16ssp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilDOB"
-                        style="@style/TilEditable"
-                        android:hint="Date of birth"
-                        app:endIconDrawable="@drawable/ic_calender">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edtDOB"
-                            style="@style/TieEdit" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_21sdp">
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilDOB"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Date of birth"
+                            app:boxStrokeColor="@color/grey_shade_1"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="0dp"
+                            app:hintTextColor="@color/grey_shade_1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtDOB"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_edt_grey_rounded_2"
+                                android:fontFamily="@font/manrope_medium"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:editable="false"
+                                android:textSize="@dimen/_16ssp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ivCalender"
+                            android:src="@drawable/ic_calender"
+                            android:paddingEnd="@dimen/_23sdp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
@@ -136,7 +223,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_16sdp"
-                        android:layout_marginBottom="@dimen/_16sdp"
                         android:orientation="horizontal"
                         android:weightSum="3">
 
@@ -144,6 +230,7 @@
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:id="@+id/llMale"
                             android:layout_marginEnd="@dimen/_8sdp"
                             android:layout_weight="1"
                             android:background="@drawable/bg_edt_grey_rounded_2"
@@ -163,6 +250,7 @@
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:id="@+id/llFemale"
                             android:layout_weight="1"
                             android:background="@drawable/bg_edt_grey_rounded_2"
                             android:gravity="center"
@@ -181,6 +269,7 @@
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:id="@+id/llOther"
                             android:layout_marginStart="@dimen/_8sdp"
                             android:layout_weight="1"
                             android:background="@drawable/bg_edt_grey_rounded_2"
@@ -202,18 +291,32 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_41sdp"
                         android:orientation="horizontal">
 
                         <CheckBox
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:buttonTint="@color/light_blue"
+                            android:id="@+id/cbCondition"/>
 
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/i_agree_to_the_terms_and_conditions"
-                            android:textSize="@dimen/_14sdp"
-                            android:fontFamily="@font/manrope_bold"/>
+                            android:fontFamily="@font/manrope_medium"
+                            android:textColor="@color/grey_shade_1"
+                            android:text="  I agree to the"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/manrope_bold"
+                            android:textColor="@color/light_blue"
+                            android:text=" Terms and Conditions"
+                            android:textSize="@dimen/_14sdp" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -234,12 +337,70 @@
                         app:backgroundTint="@null"
                         app:cornerRadius="@dimen/_5sdp" />
 
+                    <!--  <com.google.android.material.textfield.TextInputLayout
+                                           android:id="@+id/tilName"
+                                           style="@style/TilEditable"
+                                           android:hint="@string/name">
+
+                                           <com.google.android.material.textfield.TextInputEditText
+                                               android:id="@+id/edtName"
+                                               style="@style/TieEdit"
+                                               android:inputType="textCapWords" />
+
+                                       </com.google.android.material.textfield.TextInputLayout>
+                   -->
+                    <!-- <com.google.android.material.textfield.TextInputLayout
+                         android:id="@+id/tilMobileNo"
+                         style="@style/TilEditable"
+                         android:hint="Mobile number">
+
+                         <com.google.android.material.textfield.TextInputEditText
+                             android:id="@+id/edtMobileNo"
+                             style="@style/TieEdit"
+                             android:inputType="number" />
+
+                     </com.google.android.material.textfield.TextInputLayout>
+ -->
+                    <!--  <com.google.android.material.textfield.TextInputLayout
+                          android:id="@+id/tilEmail"
+                          style="@style/TilEditable"
+                          android:hint="Email address">
+
+                          <com.google.android.material.textfield.TextInputEditText
+                              android:id="@+id/edtEmail"
+                              style="@style/TieEdit"
+                              android:inputType="textEmailAddress" />
+
+                      </com.google.android.material.textfield.TextInputLayout>
+  -->
+                    <!--   <com.google.android.material.textfield.TextInputLayout
+                           android:id="@+id/tilPAN"
+                           style="@style/TilEditable"
+                           android:hint="PAN number">
+
+                           <com.google.android.material.textfield.TextInputEditText
+                               android:id="@+id/edtPAN"
+                               style="@style/TieEdit" />
+
+                       </com.google.android.material.textfield.TextInputLayout>
+   -->
+                    <!--  <com.google.android.material.textfield.TextInputLayout
+                          android:id="@+id/tilDOB"
+                          style="@style/TilEditable"
+                          android:hint="Date of birth"
+                          app:endIconDrawable="@drawable/ic_calender">
+
+                          <com.google.android.material.textfield.TextInputEditText
+                              android:id="@+id/edtDOB"
+                              style="@style/TieEdit" />
+
+                      </com.google.android.material.textfield.TextInputLayout>
+  -->
+
 
                 </LinearLayout>
 
             </ScrollView>
-
-
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>

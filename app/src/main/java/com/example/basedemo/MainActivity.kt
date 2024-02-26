@@ -10,21 +10,16 @@ import com.example.basedemo.eligibilty.CheckEligibilityFragment
 import com.example.basedemo.utils.Utility
 import com.example.basedemo.utils.addFragment
 
-
 class MainActivity : BaseActivity(),
     CheckEligibilityFragment.OnSaveButtonClickListener {
 
-
     val layoutResId: Int = R.layout.activity_main
     val fragment = CheckEligibilityFragment()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utility.fullParentWindow(window)
         setContentView(layoutResId)
-      /*  Rollbar.init(this)
-        Rollbar.instance().info("MainActivity")*/
         fragment.setOnSaveButtonClickListener(this)
         init()
     }
@@ -66,7 +61,6 @@ class MainActivity : BaseActivity(),
         intent.putExtra("datafromsdk", data)
         setResult(Activity.RESULT_OK, intent)
         finish()
-
     }
 
 }

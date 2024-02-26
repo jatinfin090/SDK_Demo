@@ -8,6 +8,7 @@ import com.example.basedemo.base.BaseViewModel
 import com.example.basedemo.datastore.DataStoreManager
 import com.example.basedemo.di.LoanSdkLandingPageRepository
 import com.example.basedemo.model.LoanSdkRegisterUserRequest
+import com.example.basedemo.model.LoanSdkSaveRequest
 import com.example.basedemo.utils.Constants
 import com.example.basedemo.utils.Utility
 import com.example.network.DataHandler2
@@ -22,22 +23,19 @@ class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSd
     private val eventChannel = Channel<Event>(Channel.BUFFERED)
     val eventFlow = eventChannel.receiveAsFlow()
 
-    val usertoken = MutableLiveData<String>()
+    val userToken = MutableLiveData<String>()
+    val userSaveResponse = MutableLiveData<String>()
 
-    fun getUserToken(token: String) {
-        usertoken.value = token
-    }
 
     fun loanSdkRegisterUSer(
         mobileNumber: String, model: String, manufacturer: String,
         serialNumber: String, deviceToken: String, deviceAuthType: String,
         operatingSysVersion: String, deviceType: String,
         isWhatsappActivated: Boolean, latitude: String,
-        longitude: String
+        longitude: String, dataStoreManager: DataStoreManager
     ) {
 
         viewModelScope.launch {
-        //    Rollbar.instance().info("viewModelScope.launch")
             val loanSdkRegisterUserRequest = LoanSdkRegisterUserRequest(
                 mobileNumber,
                 model,
@@ -56,23 +54,15 @@ class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSd
                     when (response) {
                         is DataHandler2.SUCCESS -> {
                             if (response.data?.success == true) {
-                          //      Rollbar.instance().info("response.data?.success == true")
-                                Log.e("k_response", response.data.data.toString())
+                                dataStoreManager.saveAuthToken(response.data.data?.accessToken.toString())
+                                userToken.postValue(response.data.data?.accessToken.toString())
 
-                                usertoken.postValue(response.data.data.toString())
-                            //    Rollbar.instance().info("after token save" )
-
-                                //onEvent(Event.ResponseToken(response.data.data.toString()))
                             } else {
-                                Log.e("k_response_error", response.data.toString())
-                              //  Rollbar.instance().info("response.data?.error == true")
-
+                                Log.e("response_error", response.data.toString())
                             }
                         }
 
                         is DataHandler2.ERROR -> {
-                            //Rollbar.instance().info("Error case")
-
                         }
 
                         else -> {}
@@ -80,6 +70,30 @@ class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSd
                 }
         }
     }
+
+
+    fun loanSdkSaveUser(loanSdkSaveRequest: LoanSdkSaveRequest) {
+        viewModelScope.launch {
+            loanSdkLandingPageRepository.loanSdkSaveUser(loanSdkSaveRequest)
+                .collect { response ->
+                    when (response) {
+                        is DataHandler2.SUCCESS -> {
+                            Log.e("k_Saveresponseerror", response.data?.message.toString())
+                            userSaveResponse.postValue(response.data?.message.toString())
+
+                            onEvent(Event.ResponseToken(response.data?.message.toString()))
+                        }
+
+                        is DataHandler2.ERROR -> {
+                            Log.e("k_Saveresponseerror", response.common?.message.toString())
+                        }
+
+                        else -> {}
+                    }
+                }
+        }
+    }
+
 
     fun getTimeStampDigest(dataStoreManager: DataStoreManager) {
         viewModelScope.launch {
@@ -90,13 +104,15 @@ class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSd
                 TODO("VERSION.SDK_INT < O")
             }
 
-
-
             dataStoreManager.saveHashDigest(signature)
             dataStoreManager.saveTimeStamp(timeStamp)
         }
     }
 
+fun collectDOB(){
+    onEvent(Event.DOB("dob"))
+
+}
     private fun onEvent(event: Event) {
         viewModelScope.launch { eventChannel.send(event) }
     }
@@ -107,6 +123,8 @@ class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSd
         data class HideDialog(val message: String) : Event()
 
         data class ResponseToken(val token: String) : Event()
+
+        data class DOB(val dob: String) : Event()
     }
 
 }

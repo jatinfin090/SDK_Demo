@@ -18,13 +18,13 @@ class BaseSDKApplication : Application() {
             return instance
         }
 
-         var networkSdkModule : NetworkSDKModule
-             get() {
-                 TODO()
-             }
-             set(value) {
+        var networkSdkModule: NetworkSDKModule
+            get() {
+                TODO()
+            }
+            set(value) {
 
-             }
+            }
         lateinit var dataStoreManager: DataStoreManager
     }
 

@@ -11,6 +11,7 @@ import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import java.nio.charset.StandardCharsets
 import java.util.Base64
+import java.util.Calendar
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
@@ -57,6 +58,10 @@ object Utility {
             winParams!!.flags = winParams.flags and bits.inv()
         }
         win.attributes = winParams
+    }
+
+    val calender: Calendar? by lazy {
+        Calendar.getInstance()
     }
 
 

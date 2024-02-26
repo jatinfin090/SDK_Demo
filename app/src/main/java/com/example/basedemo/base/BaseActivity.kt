@@ -28,7 +28,7 @@ abstract class BaseActivity : AppCompatActivity() {
     private var permissionCheck = 0
 
     lateinit var dataStoreManager: DataStoreManager
-lateinit var networkSDKModule: NetworkSDKModule
+    lateinit var networkSDKModule: NetworkSDKModule
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

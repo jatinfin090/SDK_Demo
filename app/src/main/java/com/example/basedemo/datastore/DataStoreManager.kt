@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.map
 private const val PREFERENCES_NAME = "loanSDK"
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = PREFERENCES_NAME)
 
-class DataStoreManager (private val context: Context) {
+class DataStoreManager(private val context: Context) {
 
     companion object {
         val userMobile = stringPreferencesKey(name = USER_MOBILE_NUMBER)
@@ -111,6 +111,7 @@ class DataStoreManager (private val context: Context) {
             preference[deviceId] = deviceIdString
         }
     }
+
 
     suspend fun savePermissionsCheck(check: Int) {
         context.dataStore.edit { preference ->

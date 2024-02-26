@@ -32,8 +32,9 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     lateinit var dataStoreManager1: DataStoreManager
     var webSocket: WebSocket? = null
-private lateinit var networkSDKModule: NetworkSDKModule
-private lateinit var dataStoreManager: DataStoreManager
+    private lateinit var networkSDKModule: NetworkSDKModule
+    private lateinit var dataStoreManager: DataStoreManager
+
     @LayoutRes
     abstract fun getLayoutId(): Int
     override fun onCreateView(
@@ -70,6 +71,4 @@ private lateinit var dataStoreManager: DataStoreManager
         super.onAttach(context)
         mContainerActivity = context as BaseActivity
     }
-
-
 }
