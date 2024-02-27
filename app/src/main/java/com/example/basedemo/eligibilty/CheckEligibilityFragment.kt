@@ -1,5 +1,7 @@
 package com.example.basedemo.eligibilty
 
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.DatePicker
@@ -9,8 +11,10 @@ import com.example.basedemo.base.BaseFragment
 import com.example.basedemo.databinding.LayoutFragmentCheckEligibilityBinding
 import com.example.basedemo.datastore.DataStoreManager
 import com.example.basedemo.di.NetworkSdkModuleImpl
+import com.example.basedemo.eligibilty.viewmodel.CheckEligibilityViewModelFactory
 import com.example.basedemo.model.LoanSdkRegisterUserRequest
 import com.example.basedemo.model.LoanSdkSaveRequest
+import com.example.basedemo.utils.Constants.DEVICE_TYPE
 import com.example.basedemo.utils.SupportedDatePickerDialog
 import com.example.basedemo.utils.Utility
 import com.example.basedemo.utils.hideKeyboard
@@ -34,6 +38,8 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
 
     private var selectedGender: Gender? = null
     private lateinit var userSaveRequest: LoanSdkSaveRequest
+    private  var latitude: String = "0.0"
+    private  var longitude: String = "0.0"
 
     interface OnSaveButtonClickListener {
         fun onSaveButtonClicked(data: String)
@@ -61,10 +67,19 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
     }
 
     private fun init() {
+
         val viewModelFactory =
             CheckEligibilityViewModelFactory(NetworkSdkModuleImpl(requireContext()))
 
         val vm = ViewModelProvider(this, viewModelFactory)[CheckEligibilityViewModel::class.java]
+
+        if (requireArguments().getString("lat") != null && requireArguments().getString("long") != null && requireArguments().getString("lat") != "null" && requireArguments().getString("long") != "null") {
+            latitude = requireArguments().getString("lat").toString()
+            longitude = requireArguments().getString("long").toString()
+        } else {
+            latitude = "80.65"
+            longitude = "78.65"
+        }
 
         dataStoreManager = DataStoreManager(requireContext())
         vm.getTimeStampDigest(dataStoreManager)
@@ -82,6 +97,22 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
                 binding?.llOther?.isSelected = false
 
                 selectedGender = Gender.Male
+
+
+                binding?.tvMale?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    getDrawable(R.drawable.ic_male_selected), null, null, null
+                )
+                binding?.tvFemale?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    getDrawable(
+                        R.drawable.ic_female_inactive
+                    ), null, null, null
+                )
+                binding?.tvOther?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    getDrawable(
+                        R.drawable.ic_other_inactive
+                    ), null, null, null
+                )
+
             }
             binding?.llFemale?.setOnClickListener {
                 binding?.llFemale?.isSelected = true
@@ -89,6 +120,19 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
                 binding?.llOther?.isSelected = false
                 selectedGender = Gender.Female
 
+                binding?.tvFemale?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    getDrawable(
+                        R.drawable.ic_female
+                    ), null, null, null
+                )
+                binding?.tvMale?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    getDrawable(R.drawable.ic_male_inactive), null, null, null
+                )
+                binding?.tvOther?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    getDrawable(
+                        R.drawable.ic_other_inactive
+                    ), null, null, null
+                )
             }
             binding?.llOther?.setOnClickListener {
 
@@ -96,18 +140,31 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
                 binding?.llFemale?.isSelected = false
                 binding?.llMale?.isSelected = false
                 selectedGender = Gender.Other
+
+                binding?.tvOther?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    getDrawable(
+                        R.drawable.ic_other
+                    ), null, null, null
+                )
+                binding?.tvFemale?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    getDrawable(R.drawable.ic_female_inactive), null, null, null
+                )
+
+                binding?.tvMale?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    getDrawable(R.drawable.ic_male_inactive), null, null, null
+                )
             }
 
             binding?.cbCondition?.setOnCheckedChangeListener { buttonView, isChecked ->
 
 
-
                 if (isChecked) {
-                    val emailStatus=  validateEmail(binding?.edtEmail?.text.toString())
+                    val emailStatus = validateEmail(binding?.edtEmail?.text.toString())
 
                     if (binding?.edtName?.text.toString()
                             .isNotEmpty() && binding?.edtMobileNo?.text.toString().isNotEmpty()
-                        && emailStatus?.isEmpty() == true && binding?.edtPAN?.text.toString().isNotEmpty()
+                        && emailStatus?.isEmpty() == true && binding?.edtPAN?.text.toString()
+                            .isNotEmpty()
                         && binding?.edtDOB?.text.toString().isNotEmpty() && selectedGender != null
                     ) {
 
@@ -130,42 +187,46 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
                     dataStoreManager.saveAuthToken("")
                 }
 
-
                 val loanSdkRegisterRequest = LoanSdkRegisterUserRequest(
                     edtMobileNo.text.toString(),
-                    "abcd",   /// build.model
-                    "abcd",  ///
-                    "uuu",  //// api issue for now  as device id deviceId(68)
+                    Build.MODEL,
+                    Build.MANUFACTURER,
+                    "uuu",  //// api issue for now
                     "abcd",   /// firebase
                     "4",    //// same as jumpp 4
-                    "0.0.4",  /// build.version.sdkint
-                    "Android",  /////const
-                    true,  //// no need
-                    "80.65",
-                    "78.92"   ///OnBoardingMobileNumberFragment
+                    Build.VERSION.RELEASE,
+                    DEVICE_TYPE,
+                    true,
+                    latitude,
+                    longitude
                 )
 
-                 userSaveRequest = LoanSdkSaveRequest(
+                userSaveRequest = LoanSdkSaveRequest(
                     binding?.edtName?.text.toString(),
                     selectedGender.toString(),
                     binding?.edtPAN?.text.toString(),
-                     binding?.edtEmail?.text.toString(),
-                     binding?.edtMobileNo?.text.toString(),
-                     binding?.edtDOB?.text.toString(),
+                    binding?.edtEmail?.text.toString(),
+                    binding?.edtMobileNo?.text.toString(),
+                    binding?.edtDOB?.text.toString(),
                     1
                 )
-
 
                 vm.loanSdkRegisterUSer(
                     loanSdkRegisterRequest,
                     dataStoreManager
                 )
-
             }
 
 
             vm.eventFlow.onEach {
                 when (it) {
+
+                    is CheckEligibilityViewModel.Event.ShowDialog -> {
+                        showProgressDialog()
+                    }
+                    is CheckEligibilityViewModel.Event.HideDialog -> {
+                        hideDialog()
+                    }
 
                     is CheckEligibilityViewModel.Event.ResponseToken -> {
                         vm.loanSdkSaveUser(userSaveRequest)
@@ -207,8 +268,14 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
         val date = sdf.format(Utility.calender!!.time)
 
         binding?.edtDOB?.setText(date)
-
     }
 
 
+    private fun getDrawable(id: Int): Drawable? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            resources.getDrawable(id, null)
+        } else {
+            resources.getDrawable(id)
+        }
+    }
 }

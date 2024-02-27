@@ -26,9 +26,12 @@ class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSd
         loanSdkRegisterUserRequest: LoanSdkRegisterUserRequest,
         dataStoreManager: DataStoreManager
     ) {
+        onEvent(Event.ShowDialog(""))
+
         viewModelScope.launch {
             loanSdkLandingPageRepository.loanSdkRegisterUSer(loanSdkRegisterUserRequest)
                 .collect { response ->
+                    onEvent(Event.HideDialog(""))
                     when (response) {
                         is DataHandler2.SUCCESS -> {
                             if (response.data?.success == true) {
@@ -50,16 +53,19 @@ class CheckEligibilityViewModel(private val loanSdkLandingPageRepository: LoanSd
 
 
     fun loanSdkSaveUser(loanSdkSaveRequest: LoanSdkSaveRequest) {
+        onEvent(Event.ShowDialog(""))
         viewModelScope.launch {
             loanSdkLandingPageRepository.loanSdkSaveUser(loanSdkSaveRequest)
                 .collect { response ->
+                    onEvent(Event.HideDialog(""))
                     when (response) {
                         is DataHandler2.SUCCESS -> {
+                            onEvent(Event.HideDialog(""))
                             onEvent(Event.ResponseSave(response.data?.message.toString()))
                         }
 
                         is DataHandler2.ERROR -> {
-                            Log.e("k_Saveresponseerror", response.common?.message.toString())
+                            Log.e("error", response.common?.message.toString())
                         }
 
                         else -> {}

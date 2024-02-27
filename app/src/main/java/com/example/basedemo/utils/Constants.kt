@@ -11,6 +11,7 @@ object Constants {
     const val DEVICE_SERIAL_NUMBER = "device-serial-number"
     const val DEVICE_ID = "device-ID"
     const val DEVICE_TOKEN = "deviceToken"
+    const val DEVICE_TYPE = "Android"
     const val BEARER = "Bearer"
     const val unKnownError = "Unknown Error"
     const val ERROR_TOKEN_EXPIRED = 401

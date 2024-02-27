@@ -15,6 +15,8 @@ class MainActivity : BaseActivity(),
 
     val layoutResId: Int = R.layout.activity_main
     val fragment = CheckEligibilityFragment()
+    lateinit var latitude : String
+    lateinit var longitude : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,13 @@ class MainActivity : BaseActivity(),
     }
 
     private fun init() {
+
+        val intent = intent
+        if (intent != null) {
+             latitude = intent.getStringExtra("lat").toString()
+             longitude = intent.getStringExtra("long").toString()
+ }
+
         openFragment(
             fragment,
             R.id.mainActivityFrameLayout,
@@ -36,6 +45,8 @@ class MainActivity : BaseActivity(),
     private fun openFragment(fragment: Fragment, mainActivityFrameLayout: Int, s: String) {
         val fragment = fragment
         val args = Bundle()
+        args.putString("lat",latitude )
+        args.putString("long",longitude )
         fragment.arguments = args
 
         addFragment(
