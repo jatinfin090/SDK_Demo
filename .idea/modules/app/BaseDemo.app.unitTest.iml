@@ -189,7 +189,7 @@
                 <arg>$MODULE_DIR$/../../../app/build/tmp/kotlin-classes/debug</arg>
                 <arg>$MODULE_DIR$/../../../app/build/intermediates/javac/debug/classes</arg>
                 <arg>$MODULE_DIR$/../../../app/build/tmp/kapt3/classes/debug</arg>
-                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_app_classes_jar/debug/classes.jar</arg>
+                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
               </args>
             </arrayArg>
             <arrayArg name="pluginClasspaths">
@@ -226,6 +226,7 @@
         <option name="RES_FOLDERS_RELATIVE_PATH" value="" />
         <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
+        <option name="PROJECT_TYPE" value="1" />
       </configuration>
     </facet>
   </component>

@@ -6,6 +6,8 @@ plugins {
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs'
     id 'org.jetbrains.kotlin.plugin.serialization'
+
+    id 'maven-publish'
 }
 
 android {
@@ -109,3 +111,18 @@ dependencies {
 kapt {
     correctErrorTypes true
 }
+
+
+//// this function is used to publish the library to local maven repository
+/*
+afterEvaluate {
+    android.libraryVariants.each { variant ->
+        publishing.publications.create(variant.name, MavenPublication) {
+            from components.findByName(variant.name)
+            groupId = 'com.example'
+            artifactId = 'loan_sdk_demo'
+            version = "1.0.0"
+
+        }
+    }
+}*/

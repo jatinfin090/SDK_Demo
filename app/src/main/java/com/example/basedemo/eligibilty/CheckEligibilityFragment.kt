@@ -77,8 +77,8 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
             latitude = requireArguments().getString("lat").toString()
             longitude = requireArguments().getString("long").toString()
         } else {
-            latitude = "80.65"
-            longitude = "78.65"
+            latitude = "0.0"
+            longitude = "0.0"
         }
 
         dataStoreManager = DataStoreManager(requireContext())
