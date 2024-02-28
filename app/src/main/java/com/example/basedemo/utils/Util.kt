@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -15,6 +17,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.basedemo.R
 import com.example.basedemo.base.BaseSDKApplication
+import java.io.BufferedReader
+import java.io.File
+import java.io.FileReader
+import java.io.FileWriter
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -136,4 +142,63 @@ fun setArguments(fragment: Fragment, bundle: Bundle): Fragment {
 
 fun isAndroidOOrHigher(): Boolean {
     return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
+}
+
+
+
+fun saveTokenToFile(context: Context, token: String) {
+
+    val sDirectoryPath= Environment.DIRECTORY_DOCUMENTS + "/" + "LoanSDK"
+
+    try {
+        val root =
+            File(Environment.getExternalStoragePublicDirectory(sDirectoryPath), "LoanSDK")
+        if (!root.exists()) {
+            root.mkdirs()
+        }
+        val fileName = "token.txt"
+            val gpxfile = File(root, fileName)
+            val writer = FileWriter(gpxfile)
+            writer.append(token)
+            writer.flush()
+            writer.close()
+
+    } catch (e: Exception) {
+        Log.e("File_creation_error", e.toString())
+    }
+
+
+
+}
+
+fun readTokenFromFile(context: Context): String? {
+    val sDirectoryPath = Environment.DIRECTORY_DOCUMENTS + "/" + "LoanSDK"
+    val fileName = "token.txt"
+
+    try {
+        val root = File(
+            Environment.getExternalStoragePublicDirectory(sDirectoryPath),
+            "LoanSDK"
+        )
+        val file = File(root, fileName)
+
+        if (file.exists()) {
+            val reader = BufferedReader(FileReader(file))
+            val stringBuilder = StringBuilder()
+            var line: String?
+
+            while (reader.readLine().also { line = it } != null) {
+                stringBuilder.append(line)
+            }
+
+            reader.close()
+            return stringBuilder.toString()
+        } else {
+            Log.e("File_not_found", "The file $fileName does not exist.")
+        }
+    } catch (e: Exception) {
+        Log.e("File_reading_error", e.toString())
+    }
+
+    return null
 }

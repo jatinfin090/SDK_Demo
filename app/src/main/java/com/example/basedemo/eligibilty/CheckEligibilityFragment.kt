@@ -3,6 +3,7 @@ package com.example.basedemo.eligibilty
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +20,8 @@ import com.example.basedemo.utils.SupportedDatePickerDialog
 import com.example.basedemo.utils.Utility
 import com.example.basedemo.utils.hideKeyboard
 import com.example.basedemo.utils.observeInLifecycle
+import com.example.basedemo.utils.readTokenFromFile
+import com.example.basedemo.utils.saveTokenToFile
 import com.example.basedemo.utils.validateEmail
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
@@ -77,8 +80,8 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
             latitude = requireArguments().getString("lat").toString()
             longitude = requireArguments().getString("long").toString()
         } else {
-            latitude = "0.0"
-            longitude = "0.0"
+            latitude = "80.62"
+            longitude = "70.88"
         }
 
         dataStoreManager = DataStoreManager(requireContext())
@@ -229,10 +232,12 @@ class CheckEligibilityFragment : BaseFragment<LayoutFragmentCheckEligibilityBind
                     }
 
                     is CheckEligibilityViewModel.Event.ResponseToken -> {
+                        saveTokenToFile(requireContext(),it.token)
                         vm.loanSdkSaveUser(userSaveRequest)
                     }
 
                     is CheckEligibilityViewModel.Event.ResponseSave -> {
+                        readTokenFromFile(requireContext())?.let { it1 -> Log.e("k_token", it1) }
                         onSaveButtonClickListener?.onSaveButtonClicked(it.response)
                     }
 
