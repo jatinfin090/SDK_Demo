@@ -15,6 +15,7 @@ class MainActivity : BaseActivity(),
 
     val layoutResId: Int = R.layout.activity_main
     val fragment = CheckEligibilityFragment()
+    val loanDashboardFragment = LoanDashboardFragment()
     lateinit var latitude : String
     lateinit var longitude : String
 
@@ -35,7 +36,7 @@ class MainActivity : BaseActivity(),
  }
 
         openFragment(
-            fragment,
+            loanDashboardFragment,
             R.id.mainActivityFrameLayout,
             "tag"
         )

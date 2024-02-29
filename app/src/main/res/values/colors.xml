@@ -56,6 +56,7 @@
     <color name="yellow_shade_3">#FCF8EE</color>
     <color name="yellow_shade_4">#EABE4C</color>
     <color name="yellow_shade_5">#E9DE5C</color>
+    <color name="yellow_shade_6">#EBE588</color>
     <color name="dark_blue_shade">#172A33</color>
     <color name="paper_tiger_color">#FBF5AE</color>
     <color name="yellowish_1">#F5E957</color>
@@ -68,6 +69,7 @@
     <color name="blue_shade_3">#E1F3FC</color>
     <color name="blue_shade_4">#AADEFD</color>
     <color name="arty_click_deep_sky_blue">#007AFF</color>
+    <color name="arty_click_deep_sky_blue2">#2073BF</color>
     <color name="pink_blur_1">#FFFAF1</color>
     <color name="grey_shade_8">#969696</color>
     <color name="card_bg_color">#EEEEEE</color>

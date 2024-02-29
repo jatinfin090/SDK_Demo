@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,12 +8,656 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@color/grey_shade">
 
-        <TextView
-            android:layout_width="wrap_content"
+
+        <ScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hiiiiii"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_pre_approved_loan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/manrope_bold"
+                        android:paddingTop="@dimen/_40sdp"
+                        android:paddingBottom="@dimen/_16sdp"
+                        android:text="Pre-approved Loan"
+                        android:textColor="@color/black_shade"
+                        android:textSize="@dimen/_18sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_pre_approved_loan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="@dimen/_12sdp"
+                        app:cardCornerRadius="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_pre_approved_loan">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/_19sdp">
+
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/cl_pre_approved_loan"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_pre_approved_loan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/bg_pre_aproved_loan"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/img_pre_approved"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/tv_title_loan_upto"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/manrope_bold"
+                                android:paddingTop="@dimen/_20sdp"
+                                android:text="You got a Pre-approve loan upto"
+                                android:textColor="@color/black_shade"
+                                android:textSize="@dimen/_16sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/cl_pre_approved_loan" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/tv_loan_value"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/manrope_extra_bold"
+                                android:text="₹5,00,000"
+                                android:textColor="@color/black_shade"
+                                android:textSize="@dimen/_32sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_title_loan_upto" />
+
+                            <View
+                                android:id="@+id/v_divider"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_1sdp"
+                                android:layout_marginStart="@dimen/_19sdp"
+                                android:layout_marginTop="@dimen/_20sdp"
+                                android:layout_marginEnd="@dimen/_19sdp"
+                                android:background="@color/grey_shade_2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_loan_value" />
+
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_apply_now"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_24sdp"
+                                android:layout_marginBottom="@dimen/_24sdp"
+                                android:background="@drawable/button_with_radious"
+                                android:gravity="center_vertical"
+                                android:paddingStart="@dimen/_8sdp"
+                                android:paddingTop="@dimen/_12sdp"
+                                android:paddingEnd="@dimen/_8sdp"
+                                android:paddingBottom="@dimen/_12sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/v_divider">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/manrope_medium"
+                                    android:text="Apply Now"
+                                    android:textColor="@color/grey_shade_4"
+                                    android:textSize="@dimen/_14sdp" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="@dimen/_1sdp"
+                                    android:background="@drawable/ic_back" />
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_personal_loan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/manrope_bold"
+                        android:paddingTop="@dimen/_40sdp"
+                        android:paddingBottom="@dimen/_16sdp"
+                        android:text="Personal Loan"
+                        android:textColor="@color/black_shade"
+                        android:textSize="@dimen/_18sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cv_pre_approved_loan" />
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_personal_loan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="@dimen/_12sdp"
+                        app:cardCornerRadius="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_personal_loan">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/cl_personal_loan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/yellow_shade_6"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_persnal_loan"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_46sdp"
+                                    android:layout_marginBottom="@dimen/_42sdp"
+                                    android:background="@drawable/ic_personal_loan"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_pl_bottom"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_46sdp"
+                                    android:background="@drawable/bg_bottm_pl"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/tv_title_pl"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/manrope_bold"
+                                android:paddingTop="@dimen/_20sdp"
+                                android:text="Get Personal Loan upto"
+                                android:textColor="@color/grey_shade_1"
+                                android:textSize="@dimen/_16sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/cl_personal_loan" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/tv_pl_value"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/manrope_extra_bold"
+                                android:text="₹5,00,000"
+                                android:textColor="@color/black_shade"
+                                android:textSize="@dimen/_32sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_title_pl" />
+
+                            <View
+                                android:id="@+id/v_pl_divider"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_1sdp"
+                                android:layout_marginStart="@dimen/_19sdp"
+                                android:layout_marginTop="@dimen/_20sdp"
+                                android:layout_marginEnd="@dimen/_19sdp"
+                                android:background="@color/grey_shade_2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_pl_value" />
+
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_20sdp"
+                                android:orientation="horizontal"
+                                android:paddingBottom="@dimen/_32sdp"
+                                android:weightSum="3"
+                                app:layout_constraintTop_toBottomOf="@+id/v_pl_divider">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/cl_paperless"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1">
+
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_paperless"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/ic_paperless"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:id="@+id/tv_title_paperless"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/manrope_regular"
+                                        android:paddingTop="@dimen/_6sdp"
+                                        android:text="100% Paperless"
+                                        android:textColor="@color/black_shade"
+                                        android:textSize="@dimen/_10sdp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/iv_paperless" />
+
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/cl_flexible_tenure"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1">
+
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_flexible_tenure"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/ic_paperless"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:id="@+id/tv_title_flexible_tenure"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/manrope_regular"
+                                        android:paddingTop="@dimen/_6sdp"
+                                        android:text="Flexible Tenure"
+                                        android:textColor="@color/black_shade"
+                                        android:textSize="@dimen/_10sdp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/iv_flexible_tenure" />
+
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/cl_apply"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1">
+
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_apply"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/ic_apply_now"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:id="@+id/tv_title_apply"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/manrope_regular"
+                                        android:paddingTop="@dimen/_6sdp"
+                                        android:text="Apply now "
+                                        android:textColor="@color/black_shade"
+                                        android:textSize="@dimen/_10sdp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/iv_apply" />
+
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_share_loan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/manrope_bold"
+                        android:paddingTop="@dimen/_40sdp"
+                        android:paddingBottom="@dimen/_16sdp"
+                        android:text="Loan against shares"
+                        android:textColor="@color/black_shade"
+                        android:textSize="@dimen/_18sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cv_personal_loan" />
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_share_loan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:background="@drawable/bg_loan_agst_share"
+                        android:paddingBottom="@dimen/_32sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_share_loan">
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_title_share_loan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/manrope_regular"
+                            android:paddingTop="@dimen/_56sdp"
+                            android:text="Offering Loan against shares upto"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_16sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_share_loan_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/manrope_extra_bold"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:text="₹5,00,000"
+                            android:textColor="@color/blue_shade_3"
+                            android:textSize="@dimen/_38sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_title_share_loan" />
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_yellow_line"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_yellow_line"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_share_loan_value" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_share_loan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_40sdp"
+                            android:background="@drawable/bg_compnay_logo"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_yellow_line" />
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_37sdp"
+                            android:background="@drawable/button_with_radious"
+                            android:backgroundTint="@color/white"
+                            android:fontFamily="@font/manrope_bold"
+                            android:paddingStart="@dimen/_35sdp"
+                            android:paddingTop="@dimen/_8sdp"
+                            android:paddingEnd="@dimen/_35sdp"
+                            android:paddingBottom="@dimen/_8sdp"
+                            android:text="Apply Now"
+                            android:textColor="@color/arty_click_deep_sky_blue2"
+                            android:textSize="@dimen/_14sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_share_loan" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cl_exclusive_offer"
+                    android:layout_marginTop="@dimen/_32sdp"
+                    android:background="@color/dark_blue_shade"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_main">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_lines"
+                        android:paddingTop="@dimen/_40sdp"
+                        android:paddingBottom="@dimen/_65sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_title_exclusive_offer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/manrope_bold"
+                            android:paddingStart="@dimen/_16sdp"
+                            android:text="Exclusive offers\nfor you."
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_24sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_exclusive_offer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_7sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:background="@drawable/icon_exclusive_offer"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/viewPagerOffers"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_62sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_title_exclusive_offer" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_title_emi_cal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/manrope_bold"
+                    android:paddingTop="@dimen/_40sdp"
+                    android:paddingBottom="@dimen/_16sdp"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:text="EMI Calculator"
+                    android:textColor="@color/black_shade"
+                    android:textSize="@dimen/_18sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_exclusive_offer" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_emi_cal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/bg_loan_agst_share"
+                android:backgroundTint="@color/dark_blue_shade"
+                android:paddingBottom="@dimen/_26sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_emi_cal">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/img_gripview"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_title_loan_emi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/manrope_bold"
+                    android:paddingStart="@dimen/_24sdp"
+                    android:paddingTop="@dimen/_32sdp"
+                    android:text="Loan EMI"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_amount_loan_emi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/manrope_bold"
+                    android:paddingStart="@dimen/_24sdp"
+                    android:text="₹10,547 "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_40sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_title_loan_emi" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_title_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/manrope_bold"
+                    android:text=" / month"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_amount_loan_emi"
+                    app:layout_constraintStart_toEndOf="@+id/tv_amount_loan_emi"
+                    app:layout_constraintTop_toTopOf="@+id/tv_amount_loan_emi" />
+
+
+                <View
+                    android:id="@+id/v_emi_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_margin="@dimen/_24sdp"
+                    android:background="@color/grey_shade"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_amount_loan_emi" />
+
+
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_title_payable_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/manrope_medium"
+                    android:paddingStart="@dimen/_24sdp"
+                    android:paddingTop="@dimen/_22sdp"
+                    android:text="Total payable amount  will be  "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/v_emi_divider" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_payable_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/manrope_medium"
+                    android:paddingStart="@dimen/_24sdp"
+                    android:paddingTop="@dimen/_22sdp"
+                    android:paddingEnd="@dimen/_18sdp"
+                    android:text="₹3,79,696"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_title_payable_amount"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_title_payable_amount" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
