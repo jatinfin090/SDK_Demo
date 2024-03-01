@@ -1,9 +1,8 @@
 package com.example.basedemo
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
-import androidx.viewpager2.widget.ViewPager2
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.basedemo.base.BaseFragment
 import com.example.basedemo.databinding.LayoutFragmentDemoBinding
 
@@ -32,37 +31,13 @@ val imageList = listOf(
             )
 
 
-            val adapter = ExclusiveOfferPagerAdapter(imageList,  binding?.viewPagerOffers!!)
-            binding?.viewPagerOffers?.adapter = adapter
-          binding?.viewPagerOffers?.clipToPadding = true
-
-            binding?.viewPagerOffers?.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-                    currentPosition = position
-                }
-            })
-
-           // startAutoScroll()
+            val adapter = ExclusiveOfferPagerAdapter(imageList)
+            binding?.viewPagerOffers?.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            binding?.viewPagerOffers?.adapter = ExclusiveOfferPagerAdapter(imageList)
 
         }
     }
 
-    private fun startAutoScroll() {
-        val handler = Handler()
-        val update = Runnable {
-            currentPosition++
-            binding?.viewPagerOffers?.setCurrentItem(currentPosition, true)
-        }
-
-        val delay = 1000L // Adjust the delay between scrolls as needed
-
-        handler.postDelayed(object : Runnable {
-            override fun run() {
-                update.run()
-                handler.postDelayed(this, delay)
-            }
-        }, delay)
-    }
 
 }
